@@ -36,6 +36,24 @@ public abstract class EntropyBasedSplitCrit
   /** for serialization */
   private static final long serialVersionUID = -2618691439791653056L;
 
+
+  /** Variable pour l'entropie de Harvat*/
+  private Float m_alpha = 0.5f;
+  private double m_factor = Math.pow(Math.pow(2.,1.-m_alpha)-1., -1.);
+
+  public double getAlpha() {
+    return (double)m_alpha;
+  }
+
+  public void setAlpha(float alpha) {
+    m_alpha = alpha;
+    m_factor = Math.pow(Math.pow(2.,1.-alpha)-1., -1.);
+  }
+
+  public double getFactor() {
+    return m_factor;
+  }
+
   /**
    * Help method for computing entropy.
    */
@@ -56,9 +74,19 @@ public abstract class EntropyBasedSplitCrit
     double returnValue = 0;
     int j;
 
+    for (j=0; j < bags.numClasses(); j++) {
+      returnValue += Math.pow(bags.perClass(j)/bags.total(),m_alpha); 
+    }
+
+    returnValue -= 1;
+
+    return returnValue*m_factor;
+
+    /*
     for (j=0;j<bags.numClasses();j++)
       returnValue = returnValue+lnFunc(bags.perClass(j));
     return (lnFunc(bags.total())-returnValue)/ContingencyTables.log2; 
+    */
   }
 
   /**
