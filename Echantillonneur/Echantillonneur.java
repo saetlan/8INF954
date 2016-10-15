@@ -9,7 +9,7 @@ import java.util.Random;
 public class Echantillonneur {
 	
 	public static void help() {
-		System.out.println("java -jar Echantillonneur.jar $Path_BDD $Path_Sortie $Nombre_Echantillonnage $Mode_Verbeux(Optionnel)");
+		System.out.println("java -cp Echantillonneur.jar Echantillonneur $Path_BDD $Path_Sortie $Nombre_Echantillonnage $Mode_Verbeux(Optionnel)");
 		System.out.println("$Mode_Verbeux : 0 -> rien(default) | 1 -> avancement");
 	}
 
@@ -45,11 +45,13 @@ public class Echantillonneur {
 		BufferedWriter writer = new BufferedWriter(out);
 		
 		//Mise en place de l'entete de fichier
+		int nbLigneEntete = 0;
 		BufferedReader reader1 = new BufferedReader(new FileReader(pathIn));
-		for (int i = 0; i < 19; i++) {
-			ligne = reader1.readLine();
+		while ( (ligne = reader1.readLine()).trim().compareTo("@data") != 0) {
 			writer.write(ligne+"\n");
+			nbLigneEntete++;
 		}
+		writer.write(ligne+"\n");
 		reader1.close();
 		
 		//Borne pour aleatoire
@@ -60,11 +62,11 @@ public class Echantillonneur {
 		}		
 		reader2.close();
 		//Echantillonnage aléatoire
-		for (int j = 0; j <= nbEchan; j++) {
+		for (int j = 0; j < nbEchan; j++) {
 						
 			BufferedReader reader3 = new BufferedReader(new FileReader(pathIn));
 			Random rand = new Random();
-			int nombreAleatoire = rand.nextInt(nbLigne - 19) + 20;
+			int nombreAleatoire = rand.nextInt(nbLigne - nbLigneEntete + 1) + nbLigneEntete;
 
 			if (modeVerbeux == 1) {
 				System.out.println("-----------------------");

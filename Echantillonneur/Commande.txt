@@ -1,0 +1,1 @@
+java -cp Echantillonneur.jar Echantillonneur $Path_BDD $Path_Sortie $Nombre_Echantillonnage $Mode_Verbeux(Optionnel)
