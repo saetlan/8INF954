@@ -98,7 +98,7 @@ public class Id3Modified
   private Attribute m_ClassAttribute;
 
   /** Value of alpha for the compute of entropy*/
-  private float m_alpha = 0.5f;
+  private float m_alpha = 0.1f;
 
   public double getAlpha() {
   	return (double)m_alpha;
