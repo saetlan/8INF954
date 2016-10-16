@@ -101,17 +101,17 @@ public class Id3Modified
   private Attribute m_ClassAttribute;
 
   /** Value of alpha for the compute of entropy*/
-  private float m_alpha = 0.5f;
+  private static double m_alpha = 0.5;
 
-  public double getAlpha() {
-  	return (double)m_alpha;
+  public static double getAlpha() {
+  	return m_alpha;
   }
 
-  public void setAlpha(float alpha) {
+  public static void setAlpha(Double alpha) {
   	if (alpha >= 0 && alpha < 1) {
-  		this.m_alpha = alpha;
+  		Id3Modified.m_alpha = alpha;
   	} else {
-  		this.m_alpha = 0.5f;
+  		Id3Modified.m_alpha = 0.5f;
   	}
   }
 
@@ -326,7 +326,7 @@ public class Id3Modified
    * @throws Exception if computation fails
    */
   private double computeEntropy(Instances data) throws Exception {
-
+    System.out.println(m_alpha);
     double [] classCounts = new double[data.numClasses()];
     Enumeration instEnum = data.enumerateInstances();
     while (instEnum.hasMoreElements()) {
@@ -341,7 +341,7 @@ public class Id3Modified
 		entropy += Math.pow(classCounts[j] / (double)data.numInstances(), m_alpha);
       }
     }
-    return entropy * Math.pow(Math.pow(2.,1.-m_alpha)-1., -1.);
+    return (entropy - 1) * Math.pow(Math.pow(2.,1.-m_alpha)-1., -1.);
 
   }
 

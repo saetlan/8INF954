@@ -34,6 +34,7 @@ import weka.classifiers.evaluation.output.prediction.AbstractOutput;
 import weka.classifiers.evaluation.output.prediction.Null;
 import weka.classifiers.pmml.consumer.PMMLClassifier;
 import weka.classifiers.rules.ZeroR;
+import weka.classifiers.trees.Id3Modified;
 import weka.core.Attribute;
 import weka.core.BatchPredictor;
 import weka.core.Capabilities;
@@ -202,6 +203,9 @@ public class ClassifierPanel extends AbstractPerspective implements
   /** Click to set test mode to generate a % split. */
   protected JRadioButton m_PercentBut = new JRadioButton("Percentage split");
 
+  /** Click to set test mode to generate a % split. */
+  protected JLabel m_AlphaBut = new JLabel("Alpha value : 0 < alpha < 1");
+
   /** Click to set test mode to test on training data. */
   protected JRadioButton m_TrainBut = new JRadioButton("Use training set");
 
@@ -265,6 +269,9 @@ public class ClassifierPanel extends AbstractPerspective implements
 
   /** The field where the % split is entered. */
   protected JTextField m_PercentText = new JTextField("66", 3);
+
+  /** The field where the alpha value is entered. */
+  protected JTextField m_AlphaValueText = new JTextField("0.5", 3);
 
   /** The button used to open a separate test dataset. */
   protected JButton m_SetTestBut = new JButton("Set...");
@@ -416,6 +423,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     m_CVBut.setToolTipText("Perform a n-fold cross-validation");
     m_PercentBut.setToolTipText("Train on a percentage of the data and"
       + " test on the remainder");
+    m_AlphaBut.setToolTipText("The alpha value to the Harvat entropy.");
     m_TestSplitBut.setToolTipText("Test on a user-specified dataset");
     m_StartBut.setToolTipText("Starts the classification");
     m_StopBut.setToolTipText("Stops a running classification");
@@ -728,15 +736,33 @@ public class ClassifierPanel extends AbstractPerspective implements
       BorderFactory.createTitledBorder("Test options"),
       BorderFactory.createEmptyBorder(0, 5, 5, 5)));
     GridBagConstraints gbC = new GridBagConstraints();
+
+    gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.WEST;
     gbC.gridy = 0;
+    gbC.gridx = 0;
+    gbL.setConstraints(m_AlphaBut, gbC);
+    p2.add(m_AlphaBut);
+
+    gbC = new GridBagConstraints();
+    gbC.anchor = GridBagConstraints.EAST;
+    gbC.fill = GridBagConstraints.HORIZONTAL;
+    gbC.gridy = 0;
+    gbC.gridx = 2;
+    gbC.weightx = 100;
+    gbC.ipadx = 20;
+    gbL.setConstraints(m_AlphaValueText, gbC);
+    p2.add(m_AlphaValueText);
+
+    gbC.anchor = GridBagConstraints.WEST;
+    gbC.gridy = 1;
     gbC.gridx = 0;
     gbL.setConstraints(m_TrainBut, gbC);
     p2.add(m_TrainBut);
 
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.WEST;
-    gbC.gridy = 1;
+    gbC.gridy = 2;
     gbC.gridx = 0;
     gbL.setConstraints(m_TestSplitBut, gbC);
     p2.add(m_TestSplitBut);
@@ -744,7 +770,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.EAST;
     gbC.fill = GridBagConstraints.HORIZONTAL;
-    gbC.gridy = 1;
+    gbC.gridy = 2;
     gbC.gridx = 1;
     gbC.gridwidth = 2;
     gbC.insets = new Insets(2, 10, 2, 0);
@@ -753,7 +779,7 @@ public class ClassifierPanel extends AbstractPerspective implements
 
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.WEST;
-    gbC.gridy = 2;
+    gbC.gridy = 3;
     gbC.gridx = 0;
     gbL.setConstraints(m_CVBut, gbC);
     p2.add(m_CVBut);
@@ -761,7 +787,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.EAST;
     gbC.fill = GridBagConstraints.HORIZONTAL;
-    gbC.gridy = 2;
+    gbC.gridy = 3;
     gbC.gridx = 1;
     gbC.insets = new Insets(2, 10, 2, 10);
     gbL.setConstraints(m_CVLab, gbC);
@@ -770,7 +796,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.EAST;
     gbC.fill = GridBagConstraints.HORIZONTAL;
-    gbC.gridy = 2;
+    gbC.gridy = 3;
     gbC.gridx = 2;
     gbC.weightx = 100;
     gbC.ipadx = 20;
@@ -779,7 +805,7 @@ public class ClassifierPanel extends AbstractPerspective implements
 
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.WEST;
-    gbC.gridy = 3;
+    gbC.gridy = 4;
     gbC.gridx = 0;
     gbL.setConstraints(m_PercentBut, gbC);
     p2.add(m_PercentBut);
@@ -787,7 +813,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.EAST;
     gbC.fill = GridBagConstraints.HORIZONTAL;
-    gbC.gridy = 3;
+    gbC.gridy = 4;
     gbC.gridx = 1;
     gbC.insets = new Insets(2, 10, 2, 10);
     gbL.setConstraints(m_PercentLab, gbC);
@@ -796,7 +822,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.EAST;
     gbC.fill = GridBagConstraints.HORIZONTAL;
-    gbC.gridy = 3;
+    gbC.gridy = 4;
     gbC.gridx = 2;
     gbC.weightx = 100;
     gbC.ipadx = 20;
@@ -806,7 +832,7 @@ public class ClassifierPanel extends AbstractPerspective implements
     gbC = new GridBagConstraints();
     gbC.anchor = GridBagConstraints.WEST;
     gbC.fill = GridBagConstraints.HORIZONTAL;
-    gbC.gridy = 4;
+    gbC.gridy = 6;
     gbC.gridx = 0;
     gbC.weightx = 100;
     gbC.gridwidth = 3;
@@ -1182,6 +1208,7 @@ public class ClassifierPanel extends AbstractPerspective implements
       synchronized (this) {
         m_StartBut.setEnabled(false);
         m_StopBut.setEnabled(true);
+        Id3Modified.setAlpha(Double.parseDouble(m_AlphaValueText.getText()));
       }
       m_RunThread = new Thread() {
         @Override
