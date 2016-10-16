@@ -326,7 +326,7 @@ public class Id3Modified
    * @throws Exception if computation fails
    */
   private double computeEntropy(Instances data) throws Exception {
-    System.out.println(m_alpha);
+
     double [] classCounts = new double[data.numClasses()];
     Enumeration instEnum = data.enumerateInstances();
     while (instEnum.hasMoreElements()) {
