@@ -107,11 +107,11 @@ public class Id3Modified
   	return m_alpha;
   }
 
-  public static void setAlpha(Double alpha) {
-  	if (alpha >= 0 && alpha < 1) {
+  public static void setAlpha(double alpha) {
+  	if (alpha > 0 && alpha != 1) {
   		Id3Modified.m_alpha = alpha;
   	} else {
-  		Id3Modified.m_alpha = 0.5f;
+  		Id3Modified.m_alpha = 0.5;
   	}
   }
 

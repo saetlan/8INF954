@@ -204,7 +204,7 @@ public class ClassifierPanel extends AbstractPerspective implements
   protected JRadioButton m_PercentBut = new JRadioButton("Percentage split");
 
   /** Click to set test mode to generate a % split. */
-  protected JLabel m_AlphaBut = new JLabel("Alpha value : 0 < alpha < 1");
+  protected JLabel m_AlphaBut = new JLabel("Alpha value : alpha > 0 && alpha != 1");
 
   /** Click to set test mode to test on training data. */
   protected JRadioButton m_TrainBut = new JRadioButton("Use training set");
@@ -1208,12 +1208,13 @@ public class ClassifierPanel extends AbstractPerspective implements
       synchronized (this) {
         m_StartBut.setEnabled(false);
         m_StopBut.setEnabled(true);
-        Id3Modified.setAlpha(Double.parseDouble(m_AlphaValueText.getText()));
       }
       m_RunThread = new Thread() {
         @Override
         public void run() {
           m_CEPanel.addToHistory();
+          Id3Modified.setAlpha(Double.parseDouble(m_AlphaValueText.getText()));
+
 
           // Copy the current state of things
           m_Log.statusMessage("Setting up...");
