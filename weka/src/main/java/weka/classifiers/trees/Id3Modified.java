@@ -101,17 +101,17 @@ public class Id3Modified
   private Attribute m_ClassAttribute;
 
   /** Value of alpha for the compute of entropy*/
-  private static double m_alpha = 0.5;
+  private static float m_alpha = 0.5f;
 
-  public static double getAlpha() {
+  public static float getAlpha() {
   	return m_alpha;
   }
 
-  public static void setAlpha(double alpha) {
+  public static void setAlpha(float alpha) {
   	if (alpha > 0 && alpha != 1) {
   		Id3Modified.m_alpha = alpha;
   	} else {
-  		Id3Modified.m_alpha = 0.5;
+  		Id3Modified.m_alpha = 0.5f;
   	}
   }
 

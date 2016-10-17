@@ -1213,7 +1213,7 @@ public class ClassifierPanel extends AbstractPerspective implements
         @Override
         public void run() {
           m_CEPanel.addToHistory();
-          Id3Modified.setAlpha(Double.parseDouble(m_AlphaValueText.getText()));
+          Id3Modified.setAlpha(Float.parseFloat(m_AlphaValueText.getText()));
 
 
           // Copy the current state of things
