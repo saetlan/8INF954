@@ -338,10 +338,10 @@ public class Id3Modified
     double entropy = 0;
     for (int j = 0; j < data.numClasses(); j++) {
       if (classCounts[j] > 0) {
-		entropy += Math.pow(classCounts[j] / (double)data.numInstances(), m_alpha);
+		entropy += ( Math.pow(classCounts[j] / (double)data.numInstances(), m_alpha) - 1);
       }
     }
-    return (entropy - 1) * Math.pow(Math.pow(2.,1.-m_alpha)-1., -1.);
+    return entropy * Math.pow(Math.pow(2.,1.-m_alpha)-1., -1.);
 
   }
 
