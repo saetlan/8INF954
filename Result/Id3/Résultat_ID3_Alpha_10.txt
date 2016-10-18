@@ -1,0 +1,188 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.Id3Modified 
+Relation:     kddcup.data_10_percent-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nftp_write.:R2L., guess_passwd.:R2L., imap.:R2L., multihop.:R2L., phf.:R2L., spy.:R2L., warezclient.:R2L., warezmaster.:R2L.-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nback.:DoS., land.:DoS., neptune.:DoS., pod.:DoS., smurf.:DoS., teardrop.:DoS.-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nbuffer_overflow.:U2R., perl.:U2R., loadmodule.:U2R., rootkit.:U2R.-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nipsweep.:Probing., nmap.:Probing., portsweep.:Probing., satan.:Probing.-weka.filters.unsupervised.attribute.Remove-R15-41-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-last-weka.filters.supervised.attribute.AttributeSelection-Eweka.attributeSelection.CfsSubsetEval -P 1 -E 1-Sweka.attributeSelection.BestFirst -D 1 -N 5
+Instances:    49500
+Attributes:   5
+              service
+              num_failed_logins
+              logged_in
+              root_shell
+              label
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Id3
+
+
+service = http
+|  root_shell = 0
+|  |  logged_in = 0: normal.
+|  |  logged_in = 1: normal.
+|  root_shell = 1: normal.
+service = smtp
+|  logged_in = 0: DoS.
+|  logged_in = 1: normal.
+service = finger: normal.
+service = domain_u: normal.
+service = auth
+|  logged_in = 0: DoS.
+|  logged_in = 1: normal.
+service = telnet
+|  logged_in = 0
+|  |  num_failed_logins = 0: DoS.
+|  |  num_failed_logins = 1: R2L.
+|  |  num_failed_logins = 2: null
+|  |  num_failed_logins = 3: null
+|  |  num_failed_logins = 4: null
+|  |  num_failed_logins = 5: null
+|  logged_in = 1
+|  |  root_shell = 0: normal.
+|  |  root_shell = 1: normal.
+service = ftp
+|  logged_in = 0: DoS.
+|  logged_in = 1: R2L.
+service = eco_i: Probing.
+service = ntp_u: normal.
+service = ecr_i: DoS.
+service = other
+|  logged_in = 0: normal.
+|  logged_in = 1: normal.
+service = private
+|  logged_in = 0: DoS.
+|  logged_in = 1: normal.
+service = pop_3
+|  logged_in = 0: DoS.
+|  logged_in = 1: normal.
+service = ftp_data
+|  logged_in = 0: normal.
+|  logged_in = 1
+|  |  root_shell = 0: normal.
+|  |  root_shell = 1: U2R.
+service = rje: DoS.
+service = time: normal.
+service = mtp: DoS.
+service = link: DoS.
+service = remote_job: DoS.
+service = gopher
+|  logged_in = 0: DoS.
+|  logged_in = 1: Probing.
+service = ssh
+|  logged_in = 0: DoS.
+|  logged_in = 1: normal.
+service = name: DoS.
+service = whois: DoS.
+service = domain: DoS.
+service = login: DoS.
+service = imap4: DoS.
+service = daytime: DoS.
+service = ctf: DoS.
+service = nntp: DoS.
+service = shell: DoS.
+service = IRC: normal.
+service = nnsp: DoS.
+service = http_443: DoS.
+service = exec: DoS.
+service = printer: DoS.
+service = efs: DoS.
+service = courier: DoS.
+service = uucp: DoS.
+service = klogin: DoS.
+service = kshell: DoS.
+service = echo: DoS.
+service = discard: DoS.
+service = systat: DoS.
+service = supdup: DoS.
+service = iso_tsap: DoS.
+service = hostnames: DoS.
+service = csnet_ns: DoS.
+service = pop_2: DoS.
+service = sunrpc: DoS.
+service = uucp_path: DoS.
+service = netbios_ns: DoS.
+service = netbios_ssn: DoS.
+service = netbios_dgm: DoS.
+service = sql_net: DoS.
+service = vmnet: DoS.
+service = bgp: DoS.
+service = Z39_50: DoS.
+service = ldap: DoS.
+service = netstat: DoS.
+service = urh_i: null
+service = X11: normal.
+service = urp_i: normal.
+service = pm_dump: null
+service = tftp_u: null
+service = tim_i: null
+service = red_i: null
+
+Time taken to build model: 0.09 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       48023               97.0162 %
+Incorrectly Classified Instances      1477                2.9838 %
+Kappa statistic                          0.9083
+Mean absolute error                      0.0046
+Root mean squared error                  0.0481
+Relative absolute error                 15.8551 %
+Root relative squared error             39.9217 %
+Total Number of Instances            49500     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,916    0,013    0,945      0,916    0,930      0,914    0,984     0,947     normal.
+                 0,250    0,000    0,667      0,250    0,364      0,408    0,739     0,168     U2R.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         loadmodule.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         perl.
+                 0,993    0,086    0,978      0,993    0,985      0,927    0,984     0,994     DoS.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         smurf.
+                 0,336    0,001    0,524      0,336    0,410      0,419    0,997     0,407     R2L.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         pod.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         teardrop.
+                 0,313    0,001    0,756      0,313    0,443      0,484    0,941     0,351     Probing.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         ipsweep.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         land.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         ftp_write.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         back.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         imap.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         satan.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         phf.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         nmap.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         multihop.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         warezmaster.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         warezclient.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         spy.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         rootkit.
+Weighted Avg.    0,970    0,070    0,968      0,970    0,968      0,920    0,983     0,978     
+
+=== Confusion Matrix ===
+
+     a     b     c     d     e     f     g     h     i     j     k     l     m     n     o     p     q     r     s     t     u     v     w   <-- classified as
+  8935     1     0     0   744     0    39     0     0    40     0     0     0     0     0     0     0     0     0     0     0     0     0 |     a = normal.
+     5     2     0     0     1     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     b = U2R.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     c = loadmodule.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     d = perl.
+   290     0     0     0 38919     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     e = DoS.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     f = smurf.
+    85     0     0     0     0     0    43     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     g = R2L.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     h = pod.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     i = teardrop.
+   136     0     0     0   136     0     0     0     0   124     0     0     0     0     0     0     0     0     0     0     0     0     0 |     j = Probing.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     k = ipsweep.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     l = land.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     m = ftp_write.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     n = back.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     o = imap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     p = satan.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     q = phf.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     r = nmap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     s = multihop.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     t = warezmaster.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     u = warezclient.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     v = spy.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     w = rootkit.
+

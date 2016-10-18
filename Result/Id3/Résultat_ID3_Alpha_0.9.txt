@@ -1,0 +1,90 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.Id3Modified 
+Relation:     kddcup.data_10_percent-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nftp_write.:R2L., guess_passwd.:R2L., imap.:R2L., multihop.:R2L., phf.:R2L., spy.:R2L., warezclient.:R2L., warezmaster.:R2L.-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nback.:DoS., land.:DoS., neptune.:DoS., pod.:DoS., smurf.:DoS., teardrop.:DoS.-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nbuffer_overflow.:U2R., perl.:U2R., loadmodule.:U2R., rootkit.:U2R.-weka.filters.unsupervised.attribute.RenameNominalValues-Rlabel-Nipsweep.:Probing., nmap.:Probing., portsweep.:Probing., satan.:Probing.-weka.filters.unsupervised.attribute.Remove-R15-41-weka.filters.unsupervised.attribute.NumericToNominal-Rfirst-last-weka.filters.supervised.attribute.AttributeSelection-Eweka.attributeSelection.CfsSubsetEval -P 1 -E 1-Sweka.attributeSelection.BestFirst -D 1 -N 5
+Instances:    49500
+Attributes:   5
+              service
+              num_failed_logins
+              logged_in
+              root_shell
+              label
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Id3
+
+
+logged_in = 0: DoS.
+logged_in = 1: normal.
+
+Time taken to build model: 0.03 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       46044               93.0182 %
+Incorrectly Classified Instances      3456                6.9818 %
+Kappa statistic                          0.7649
+Mean absolute error                      0.0114
+Root mean squared error                  0.0754
+Relative absolute error                 39.205  %
+Root relative squared error             62.645  %
+Total Number of Instances            49500     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0,723    0,009    0,953      0,723    0,822      0,797    0,854     0,774     normal.
+                 0,000    0,000    0,000      0,000    0,000      0,000    0,603     0,000     U2R.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         loadmodule.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         perl.
+                 0,994    0,302    0,926      0,994    0,959      0,788    0,843     0,924     DoS.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         smurf.
+                 0,000    0,000    0,000      0,000    0,000      0,000    0,879     0,015     R2L.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         pod.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         teardrop.
+                 0,000    0,000    0,000      0,000    0,000      0,000    0,569     0,009     Probing.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         ipsweep.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         land.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         ftp_write.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         back.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         imap.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         satan.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         phf.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         nmap.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         multihop.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         warezmaster.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         warezclient.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         spy.
+                 0,000    0,000    0,000      0,000    0,000      0,000    ?         ?         rootkit.
+Weighted Avg.    0,930    0,241    0,921      0,930    0,922      0,781    0,843     0,884     
+
+=== Confusion Matrix ===
+
+     a     b     c     d     e     f     g     h     i     j     k     l     m     n     o     p     q     r     s     t     u     v     w   <-- classified as
+  7060     0     0     0  2699     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     a = normal.
+     5     0     0     0     3     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     b = U2R.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     c = loadmodule.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     d = perl.
+   225     0     0     0 38984     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     e = DoS.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     f = smurf.
+   120     0     0     0     8     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     g = R2L.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     h = pod.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     i = teardrop.
+     2     0     0     0   394     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     j = Probing.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     k = ipsweep.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     l = land.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     m = ftp_write.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     n = back.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     o = imap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     p = satan.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     q = phf.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     r = nmap.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     s = multihop.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     t = warezmaster.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     u = warezclient.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     v = spy.
+     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0     0 |     w = rootkit.
+
