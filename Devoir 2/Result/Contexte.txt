@@ -1,0 +1,5 @@
+J48	-> attribute selection avant traitement
+
+KMEANS 	-> Attribute selection + clustering par label avec 5 clusters
+
+GDBSCAN	-> 
