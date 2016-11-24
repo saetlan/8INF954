@@ -1,5 +1,0 @@
-J48	-> attribute selection avant traitement + split 66%
-
-KMEANS 	-> Attribute selection + clustering par label avec 5 clusters
-
-GDBSCAN	-> 
